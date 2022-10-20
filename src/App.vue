@@ -1,15 +1,21 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+  <h1>Hello!</h1>
+  <h3>{{ counter }}</h3>
+  <button @click="main.oneCount">Count</button>
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { useCounterStore } from './store/useCounter';
+import { storeToRefs } from "pinia";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  setup () {
+    const main = useCounterStore();
+    const { counter, name } = storeToRefs(main);
+
+    return { counter, name }
   }
 }
 </script>
